@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <?php 
 include('func1.php');
-$con=mysqli_connect("localhost","root","","myhmsdb");
+$envVarMARIADB_HOST = getenv('MARIADB_HOST');
+$envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+$envVarMARIADB_USER = getenv('MARIADB_USER');
+$envVarMARIADB_DB = getenv('MARIADB_DB');
+
+$con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
 $doctor = $_SESSION['dname'];
 if(isset($_GET['cancel']))
   {
@@ -179,7 +184,12 @@ if(isset($_GET['cancel']))
                 </thead>
                 <tbody>
                   <?php 
-                    $con=mysqli_connect("localhost","root","","myhmsdb");
+                    $envVarMARIADB_HOST = getenv('MARIADB_HOST');
+                    $envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+                    $envVarMARIADB_USER = getenv('MARIADB_USER');
+                    $envVarMARIADB_DB = getenv('MARIADB_DB');
+                    
+                    $con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
                     global $con;
                     $dname = $_SESSION['dname'];
                     $query = "select pid,ID,fname,lname,gender,email,contact,appdate,apptime,userStatus,doctorStatus from appointmenttb where doctor='$dname';";
@@ -271,8 +281,14 @@ if(isset($_GET['cancel']))
                 </thead>
                 <tbody>
                   <?php 
+                    $envVarMARIADB_HOST = getenv('MARIADB_HOST');
+                    $envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+                    $envVarMARIADB_USER = getenv('MARIADB_USER');
+                    $envVarMARIADB_DB = getenv('MARIADB_DB');
+                  
+                    $con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
 
-                    $con=mysqli_connect("localhost","root","","myhmsdb");
+                    
                     global $con;
 
                     $query = "select pid,fname,lname,ID,appdate,apptime,disease,allergy,prescription from prestb where doctor='$doctor';";
@@ -324,8 +340,12 @@ if(isset($_GET['cancel']))
                 </thead>
                 <tbody>
                   <?php 
-
-                    $con=mysqli_connect("localhost","root","","myhmsdb");
+                    $envVarMARIADB_HOST = getenv('MARIADB_HOST');
+                    $envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+                    $envVarMARIADB_USER = getenv('MARIADB_USER');
+                    $envVarMARIADB_DB = getenv('MARIADB_DB');
+                     
+                    $con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
                     global $con;
 
                     $query = "select * from appointmenttb;";

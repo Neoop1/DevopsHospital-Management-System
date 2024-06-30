@@ -1,5 +1,10 @@
 <?php 
-$con=mysqli_connect("localhost","root","","myhmsdb");
+$envVarMARIADB_HOST = getenv('MARIADB_HOST');
+$envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+$envVarMARIADB_USER = getenv('MARIADB_USER');
+$envVarMARIADB_DB = getenv('MARIADB_DB');
+
+$con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
 if(isset($_POST['btnSubmit']))
 {
 	$name = $_POST['txtName'];

@@ -1,30 +1,42 @@
 <?php
 session_start();
-$con=mysqli_connect("localhost","root","","myhmsdb");
-if(isset($_POST['patsub'])){
-	$email=$_POST['email'];
-	$password=$_POST['password2'];
-	$query="select * from patreg where email='$email' and password='$password';";
-	$result=mysqli_query($con,$query);
-	if(mysqli_num_rows($result)==1)
-	{
-		while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)){
+$envVarMARIADB_HOST = getenv('MARIADB_HOST');
+$envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+$envVarMARIADB_USER = getenv('MARIADB_USER');
+$envVarMARIADB_DB = getenv('MARIADB_DB');
+
+$con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
+if(isset($_POST['patsub1'])){
+	$fname=$_POST['fname'];
+  $lname=$_POST['lname'];
+  $gender=$_POST['gender'];
+  $email=$_POST['email'];
+  $contact=$_POST['contact'];
+	$password=$_POST['password'];
+  $cpassword=$_POST['cpassword'];
+  if($password==$cpassword){
+  	$query="insert into patreg(fname,lname,gender,email,contact,password,cpassword) values ('$fname','$lname','$gender','$email','$contact','$password','$cpassword');";
+    $result=mysqli_query($con,$query);
+    if($result){
+        $_SESSION['username'] = $_POST['fname']." ".$_POST['lname'];
+        $_SESSION['fname'] = $_POST['fname'];
+        $_SESSION['lname'] = $_POST['lname'];
+        $_SESSION['gender'] = $_POST['gender'];
+        $_SESSION['contact'] = $_POST['contact'];
+        $_SESSION['email'] = $_POST['email'];
+        header("Location:admin-panel.php");
+    } 
+
+    $query1 = "select * from patreg;";
+    $result1 = mysqli_query($con,$query1);
+    if($result1){
       $_SESSION['pid'] = $row['pid'];
-      $_SESSION['username'] = $row['fname']." ".$row['lname'];
-      $_SESSION['fname'] = $row['fname'];
-      $_SESSION['lname'] = $row['lname'];
-      $_SESSION['gender'] = $row['gender'];
-      $_SESSION['contact'] = $row['contact'];
-      $_SESSION['email'] = $row['email'];
     }
-		header("Location:admin-panel.php");
-	}
-  else {
-    echo("<script>alert('Invalid Username or Password. Try Again!');
-          window.location.href = 'index1.php';</script>");
-    // header("Location:error.php");
+
   }
-		
+  else{
+    header("Location:error1.php");
+  }
 }
 if(isset($_POST['update_data']))
 {
@@ -47,18 +59,15 @@ if(isset($_POST['update_data']))
 // 	while($row=mysqli_fetch_array($result))
 // 	{
 // 		$name=$row['name'];
-//     $cost=$row['docFees'];
-// 		echo '<option value="'.$name.'" data-price="' .$cost. '" >'.$name.'</option>';
+// 		# echo'<option value="" disabled selected>Select Doctor</option>';
+// 		echo '<option value="'.$name.'">'.$name.'</option>';
 // 	}
 // }
 
 if(isset($_POST['doc_sub']))
 {
-	$doctor=$_POST['doctor'];
-  $dpassword=$_POST['dpassword'];
-  $demail=$_POST['demail'];
-  $docFees=$_POST['docFees'];
-	$query="insert into doctb(username,password,email,docFees)values('$doctor','$dpassword','$demail','$docFees')";
+	$name=$_POST['name'];
+	$query="insert into doctb(name)values('$name')";
 	$result=mysqli_query($con,$query);
 	if($result)
 		header("Location:adddoc.php");

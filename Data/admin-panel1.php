@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php 
-$con=mysqli_connect("localhost","root","","myhmsdb");
+$envVarMARIADB_HOST = getenv('MARIADB_HOST');
+$envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+$envVarMARIADB_USER = getenv('MARIADB_USER');
+$envVarMARIADB_DB = getenv('MARIADB_DB');
+
+$con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
 
 include('newfunc.php');
 
@@ -272,7 +277,13 @@ if(isset($_POST['docsub1']))
                 </thead>
                 <tbody>
                   <?php 
-                    $con=mysqli_connect("localhost","root","","myhmsdb");
+                    $envVarMARIADB_HOST = getenv('MARIADB_HOST');
+                    $envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+                    $envVarMARIADB_USER = getenv('MARIADB_USER');
+                    $envVarMARIADB_DB = getenv('MARIADB_DB');
+                  
+                    $con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
+                  
                     global $con;
                     $query = "select * from doctb";
                     $result = mysqli_query($con,$query);
@@ -323,7 +334,13 @@ if(isset($_POST['docsub1']))
                 </thead>
                 <tbody>
                   <?php 
-                    $con=mysqli_connect("localhost","root","","myhmsdb");
+                    $envVarMARIADB_HOST = getenv('MARIADB_HOST');
+                    $envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+                    $envVarMARIADB_USER = getenv('MARIADB_USER');
+                    $envVarMARIADB_DB = getenv('MARIADB_DB');
+                  
+                    $con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
+                    
                     global $con;
                     $query = "select * from patreg";
                     $result = mysqli_query($con,$query);
@@ -379,7 +396,13 @@ if(isset($_POST['docsub1']))
                 </thead>
                 <tbody>
                   <?php 
-                    $con=mysqli_connect("localhost","root","","myhmsdb");
+                    $envVarMARIADB_HOST = getenv('MARIADB_HOST');
+                    $envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+                    $envVarMARIADB_USER = getenv('MARIADB_USER');
+                    $envVarMARIADB_DB = getenv('MARIADB_DB');
+                  
+                    $con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
+                    
                     global $con;
                     $query = "select * from prestb";
                     $result = mysqli_query($con,$query);
@@ -450,8 +473,14 @@ if(isset($_POST['docsub1']))
                 </thead>
                 <tbody>
                   <?php 
+                    $envVarMARIADB_HOST = getenv('MARIADB_HOST');
+                    $envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+                    $envVarMARIADB_USER = getenv('MARIADB_USER');
+                    $envVarMARIADB_DB = getenv('MARIADB_DB');
+                  
+                    $con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
 
-                    $con=mysqli_connect("localhost","root","","myhmsdb");
+                    
                     global $con;
 
                     $query = "select * from appointmenttb;";
@@ -560,8 +589,14 @@ if(isset($_POST['docsub1']))
                 </thead>
                 <tbody>
                   <?php 
+                    $envVarMARIADB_HOST = getenv('MARIADB_HOST');
+                    $envVarMARIADB_PASSWORD = getenv('MARIADB_PASSWORD');
+                    $envVarMARIADB_USER = getenv('MARIADB_USER');
+                    $envVarMARIADB_DB = getenv('MARIADB_DB');
+                  
+                    $con=mysqli_connect($envVarMARIADB_HOST, $envVarMARIADB_USER , $envVarMARIADB_PASSWORD ,$envVarMARIADB_DB );
 
-                    $con=mysqli_connect("localhost","root","","myhmsdb");
+                    
                     global $con;
 
                     $query = "select * from contact;";
